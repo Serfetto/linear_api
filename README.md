@@ -8,5 +8,5 @@ Open new console and follow the commands:
 2. ```python -m venv .venv```
 3. ```.venv/Scripts/activate```
 4. ```pip install -r requirements.txt```
-6. ```python -m main.py```
+6. ```python main.py```
 7. Open browser and type this urls: ```http://localhost:8000```
