@@ -1,0 +1,242 @@
+/* Базовые стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Стили для кнопок переключения */
+.container-buttons {
+    display: flex;
+    width: 100%;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+.container-buttons button {
+    flex: 1;
+    padding: 15px 0;
+    border: none;
+    color: white;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container-buttons button:hover {
+    background: linear-gradient(135deg, #2980b9 0%, #1a5276 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Стили для формы ввода значения */
+#form-value {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+#input-value {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#input-value:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+#input-submit-btn {
+    padding: 12px 0;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#input-submit-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#input-submit-btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Стили для формы загрузки файла */
+#upload-form-file {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.upload-container {
+    border: 2px dashed #e0e0e0;
+    border-radius: 6px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.upload-container:hover {
+    border-color: #3498db;
+    background-color: #f8fafc;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.file-label:hover {
+    background: linear-gradient(135deg, #2980b9 0%, #1a5276 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.file-name {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.info-text {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-top: 5px;
+}
+
+.submit-file-btn {
+    padding: 12px 0;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.submit-file-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.submit-file-btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Стили для результатов */
+.result-container-value, .result-container-file {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 20px;
+    margin-top: 20px;
+    border-left: 4px solid #3498db;
+}
+
+.result-value-title, .result-title {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.result-value-data, .result-data-file {
+    font-size: 16px;
+    color: #34495e;
+}
+
+/* Стили для сообщения об ошибке */
+.error-message-file {
+    color: #e74c3c;
+    background-color: #fadbd8;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    display: none;
+    border-left: 4px solid #e74c3c;
+}
+
+.error-message-value {
+    color: #e74c3c;
+    background-color: #fadbd8;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    display: none;
+    border-left: 4px solid #e74c3c;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-container-value, .result-container-file, .error-message-file, .error-message-value {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.result-container-value, .error-message-value, .result-container-file, .file-input, .container-analitics {
+    display: none;
+}
+
+/* Скрытие неактивных контейнеров */
+.container-file {
+    display: none;
+}
+
+.result-analitics {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

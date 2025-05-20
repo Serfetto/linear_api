@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предсказание моделью</title>
+    <link href="/static/css/index.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Предсказание зарплаты по вашему опыту работы</h1>
+        
+        <div class="container-buttons">
+            <button id="container-value-btn" onclick="toggle_visibility('container-value')">Значение</button>
+            <button id="container-file-btn" onclick="toggle_visibility('container-file')">Файл</button>
+            <button id="analitics-btn" style="display: none;" onclick="toggle_visibility('container-analitics')">Аналитика</button>
+        </div>
+
+        <div class="container-value" id="container-value">            
+            <form id="form-value">
+                <input type="number" id="input-value" placeholder="Введите значение">
+                <button type="submit" id="input-submit-btn" disabled>Получить предсказание</button>
+            </form>
+
+            <div class="result-container-value" id="result-container-value">
+                <div class="result-value-title">Результаты предсказания:</div>
+                <div class="result-value-data" id="result-value-data"></div>
+            </div>
+
+            <div class="error-message-value" id="error-message-value"></div>
+        </div>
+
+        
+        <div class="container-file" id="container-file" >        
+            <form id="upload-form-file">
+                <div class="upload-container" id="drop-area">
+                    <label for="file-input" class="file-label">Выбрать файл</label>
+                    <input type="file" id="file-input" class="file-input" accept=".csv, .xlsx">
+                    <div class="file-name" id="file-name">Файл не выбран</div>
+                    <div class="info-text">Поддерживаемые форматы: CSV, XLSX</div>
+                    <div class="error-message-file" id="error-message-file"></div>
+                </div>
+                
+                <button type="submit" class="submit-file-btn" id="submit-file-btn" disabled>Получить предсказание</button>
+            </form>
+            
+            <div class="result-container-file" id="result-container-file">
+                <div class="result-title">Результаты предсказания:</div>
+                <div class="result-data-file" id="result-data-file"></div>
+            </div>
+        </div>
+
+        <div class="container-analitics" id="container-analitics">            
+            <div class="result-analitics" id="result-analitics">
+                <img style="width: 512px;" id="table-correlations">
+                <br>
+                <img style="width: 512px;" id="plot-pred">
+                <div class="analitics-plot" id="analitics-plot">
+                    <form id="select-plot">                    
+                        <select id="dropdown-plot-1"></select>
+                        <select id="dropdown-plot-2"></select>
+                        <button type="submit" id="analitics-plot-btn">Построить график</button>
+                    </form>
+                </div>
+                <img style="width: 512px;" id="plot-correlations">
+            </div>
+    
+            <div class="error-message-analitics" id="error-message-analitics"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/index.js"></script>
+</body>
+</html>

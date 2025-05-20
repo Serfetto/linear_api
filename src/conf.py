@@ -1,0 +1,1 @@
+APPLYLOADFORMATFILE = ["csv", "xlsx"]
