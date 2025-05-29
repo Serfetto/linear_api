@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (Array.isArray(data.result_model)) {
                 errorMessageFile.style.display = 'none';
                 resultDataFile.innerHTML = data.experience.map((exp, index) => 
-                    `Стаж работы: <strong>${exp} лет</strong>, прогнозируемая зарплата: <strong>${parseInt(data.result_model[index])} $</strong>`
+                    `Стаж работы: <strong>${exp} лет</strong>, прогнозируемая зарплата: <strong>${parseInt(data.result_model[index])}₽</strong>`
                 ).join('</br>');
             } else {
                 resultDataFile.textContent = JSON.stringify(data, null, 2);
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (Array.isArray(data)) {
                 valueError.style.display = 'none';
                 resultValueData.innerHTML = `                    
-                <p>При опыте <strong>${inputValue.value} лет</strong>, прогнозируемая зарплата: <strong>${parseInt(data[0])}$</strong></p>
+                <p>При опыте <strong>${inputValue.value} лет</strong>, прогнозируемая зарплата: <strong>${parseInt(data[0])}₽</strong></p>
                 `
             } else {
                 valueError.style.display = 'none';
