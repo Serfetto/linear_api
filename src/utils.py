@@ -56,8 +56,8 @@ def plot(df: pd.DataFrame=None,
         plt.plot(df[column1].to_numpy(), np.array(pred_model), color='blue', linewidth=2)
     if title is not None:
         plt.title(title)
-    if legend:
-        plt.legend([column2, column1], loc='upper left')
+    # if legend:
+    #     plt.legend([column2, column1], loc='upper left')
     if trendline:
         plt.plot(np.unique(df[column1].to_numpy()), 
          np.poly1d(np.polyfit(df[column1].to_numpy(), df[column2].to_numpy(), 1))
@@ -67,7 +67,7 @@ def plot(df: pd.DataFrame=None,
 
 def pltValues(df: pd.DataFrame, index: str, column: str, background_tasks: BackgroundTasks):
     plot_file = path_with_uuid()
-    plot(df=df, column1=index, column2=column, title="Корреляция", plot_file=plot_file, trendline=True)
+    plot(df=df, column1=index, column2=column, title="Корреляция признаков", plot_file=plot_file, trendline=True)
     encoded_image = encode_delete_file(plot_file)
     background_tasks.add_task(os.remove, plot_file)
     return encoded_image
@@ -82,7 +82,7 @@ def analitics_plot(df: pd.DataFrame, pred_model: list[int], background_tasks: Ba
     plt.savefig(table_correlation_file, bbox_inches='tight', dpi=300)
     plt.close()
 
-    plot(df=df, column1="Years of Experience", column2="Salary", pred_model=pred_model, title="Предсказание заработной платы", plot_file=plot_file, legend=True)
+    plot(df=df, column1="Years of Experience", column2="Salary", pred_model=pred_model, title="Предсказание заработной платы", plot_file=plot_file)
 
     encoded_image_correlation = encode_delete_file(table_correlation_file)
     encoded_image_plot = encode_delete_file(plot_file)
