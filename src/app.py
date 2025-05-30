@@ -30,18 +30,30 @@ async def main(request: Request):
 
 @app.post("/predict_file")
 async def get_predict(file: UploadFile, background_tasks: BackgroundTasks):
+    if LinearRegressionModel is None:
+        return JSONResponse(
+            status_code=503,
+            content={"message": f"Ой! Наша модель не работает"},
+        )
     if file.content_type not in ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "text/csv"]:
         return JSONResponse(
             status_code=400,
-            content={"message": f"Oops! This file {file.filename} is invalid file type, you can upload file with types: {', '.join(APPLYLOADFORMATFILE)}"},
+            content={"message": f"Ой! Этот файл {file.filename} имеет неверный тип, вы можете загрузить файл с типом: {', '.join(APPLYLOADFORMATFILE)}"},
         )
     
     df = await savetempfile(file, background_tasks)
-    if not len(df['Years of Experience'].values.tolist()):
+    try:
+        if not len(df['Years of Experience'].values.tolist()):
+            return JSONResponse(
+                status_code=400,
+                content={"message": f"Ой! Мы не нашли никаких значений в ваших файлах. Пожалуйста, добавьте хотя бы одно значение."},
+            )
+    except Exception as e:
         return JSONResponse(
             status_code=400,
-            content={"message": f"Oops! We didn't find any values in your files. Please add at least one value."},
+            content={"message": f"Ой! Мы не нашли нужного столбца: Years of Experience"},
         )
+    
     result = answermodelfile(LinearRegressionModel, df)
     encoded_image_correlation, encoded_image_plot = analitics_plot(df, result, background_tasks)
     return JSONResponse(
@@ -56,10 +68,15 @@ async def get_predict(file: UploadFile, background_tasks: BackgroundTasks):
 
 @app.post("/predict_value")
 async def get_predict(value_param: ValueSchema):
+    if LinearRegressionModel is None:
+        return JSONResponse(
+            status_code=503,
+            content={"message": f"Ой! Наша модель не работает"},
+        )
     if value_param.value < 0:
         return JSONResponse(
             status_code=400,
-            content={"message": f"Oops! This value({value_param.value}) is bad. Please set value >= 0."},
+            content={"message": f"Упс! Это значение ({value_param.value}) неверно. Пожалуйста, установите значение >= 0."},
         )
     result = answermodelvalue(LinearRegressionModel, value_param.value)
     return result
@@ -70,7 +87,7 @@ async def get_predict(file: UploadFile, index: str = Form(...), column: str = Fo
     if index is None or column is None:
         return JSONResponse(
             status_code=400,
-            content={"message": f"Oops! Sorry, you didn't pass all values. Please fill all fields."},
+            content={"message": f"Ой! Извините, вы не указали все значения. Пожалуйста, заполните все поля."},
         )
     plot_by_values = pltValues(df, index, column, background_tasks)
     return JSONResponse(
